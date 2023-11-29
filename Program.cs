@@ -28,38 +28,84 @@
 //     if (currentNumber >= minInTheRange && currentNumber <= maxinTheRange)
 //       ++count;
 //     Console.Write($"{currentNumber}");
-   
+
 // }
 
 // Console.WriteLine($"] {count} чисел находится в диапазоне [{minInTheRange}, {maxinTheRange}]");
 
 // Задача 2: Задайте массив на 10 целых чисел. Напишите программу, которая определяет количество чётных чисел в массиве.
+
+// int arraySize = 10;
+
+// int[] arrayOfnumbers = new int[arraySize];
+// Random rand = new Random();
+
+// for (int i = 0; i < arraySize; i++)
+// {
+//     arrayOfnumbers[i] = rand.Next(1, 100);
+// }
+
+// Console.Write("В данном массиве [");
+
+// int evenNumbers = 0;
+
+// for (int i = 0; i < arraySize; i++)
+// {
+//     if (i > 0)
+//         Console.Write($", ");
+
+//     int currentNumber = arrayOfnumbers[i];
+
+//     if (currentNumber % 2 == 0)
+//         ++evenNumbers;
+
+//     Console.Write($"{currentNumber}");
+
+// }
+
+// Console.WriteLine($"] => {evenNumbers}  чётных ");
+
+// Задача 3: Задайте массив из вещественных чисел с ненулевой дробной частью. Найдите разницу между максимальным и минимальным элементов массива.
+
+int minNumber = 1;
+int maxNumber = 100;
+
 int arraySize = 10;
 
-int[] arrayOfnumbers = new int[arraySize];
+double[] arrayOfnumbers = new double[arraySize];
 Random rand = new Random();
 
-for (int i = 0; i < arraySize; i++)
+double min = double.MaxValue;
+double max = double.MinValue;
+
+for (int i = 0; i < arraySize; ++i)
 {
-    arrayOfnumbers[i] = rand.Next(1,100);
+    double fractionalPart = 0;
+    while (fractionalPart == 0)
+    {
+        fractionalPart = rand.NextDouble();
+    }
+
+    double currentnumber = Math.Round(rand.Next(minNumber, maxNumber) + fractionalPart, 2);
+    arrayOfnumbers[i] = currentnumber;
+
+    if (min > currentnumber)
+        min = currentnumber;
+
+    if (max < currentnumber)
+        max = currentnumber;
 }
 
-Console.Write("В данном массиве [");
+Console.Write("Разница между максимальным и минимальным элементами\n в массиве [");
 
-int evenNumbers = 0;
-
-for (int i = 0; i < arraySize; i++)
+for (int i = 0; i < arraySize; ++i)
 {
     if (i > 0)
         Console.Write($", ");
 
-    int currentNumber = arrayOfnumbers[i];
-   
-    if (currentNumber%2==0)
-      ++evenNumbers;
-      
+    double currentNumber = arrayOfnumbers[i];
+  
     Console.Write($"{currentNumber}");
-   
 }
 
-Console.WriteLine($"] => {evenNumbers}  чётных ");
+Console.WriteLine($"] => {max - min}");
